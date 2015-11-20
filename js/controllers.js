@@ -3,9 +3,18 @@ angular.module('FindMe.controllers', [])
 // APP - RIGHT MENU
 .controller('AppCtrl', function($scope){
 
+
+
 })
 
-.controller('HomeCtrl', function($scope, $ionicActionSheet, $state){
+.controller('HomeCtrl', function($scope, $ionicActionSheet, $state,  $ionicSideMenuDelegate){
+
+	//Menu Toggle
+    $scope.toggleMenu = function(){
+    $ionicSideMenuDelegate.toggleLeft();
+  }
+	
+
 	$scope.showLogOutMenu = function() {
 		// Show the action sheet
 		var hideSheet = $ionicActionSheet.show({

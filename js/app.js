@@ -28,8 +28,11 @@ angular.module('FindMe', [
 })
 
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+
+  $ionicConfigProvider.tabs.position('bottom');
   $stateProvider
+
 
   .state('facebook-sign-in', {
     url: "/facebook-sign-in",
@@ -59,7 +62,7 @@ angular.module('FindMe', [
     url: "/app",
     abstract: true,
     templateUrl: "views/app/side-menu.html",
-    controller: 'AppCtrl'
+    controller: 'HomeCtrl'
   })
 
   // APP HOME
@@ -73,7 +76,7 @@ angular.module('FindMe', [
     }
   })
 
-  ;
+  
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/facebook-sign-in');
