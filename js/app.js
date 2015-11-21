@@ -76,6 +76,11 @@ angular.module('FindMe', [
     }
   })
 
+  .state('find-detail', {
+    url: "/find-detail",
+    templateUrl: "views/app/find-detail.html",
+    controller: 'HomeCtrl'
+  })
   
 
   // if none of the above states are matched, use this as the fallback

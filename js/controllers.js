@@ -7,12 +7,20 @@ angular.module('FindMe.controllers', [])
 
 })
 
-.controller('HomeCtrl', function($scope, $ionicActionSheet, $state,  $ionicSideMenuDelegate){
+.controller('HomeCtrl', function($scope, $ionicActionSheet, $state, $ionicSideMenuDelegate, $ionicHistory){
+
+	//Back 
+  	$scope.myGoBack = function() {
+    $ionicHistory.goBack();
+ 
+}
 
 	//Menu Toggle
     $scope.toggleMenu = function(){
     $ionicSideMenuDelegate.toggleLeft();
   }
+
+  
 	
 
 	$scope.showLogOutMenu = function() {

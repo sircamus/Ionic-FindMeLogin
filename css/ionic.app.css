@@ -7818,7 +7818,7 @@ ion-spinner.spinner-on-load {
       margin-top: 20px;
       color: rgba(230, 230, 230, 0.8); }
   .welcome-view .bottom-content {
-    height: 34%;
+    height: 15%;
     margin: 0px; }
     .welcome-view .bottom-content .facebook-sign-in, .welcome-view .bottom-content .create-account {
       border-radius: 4px;
