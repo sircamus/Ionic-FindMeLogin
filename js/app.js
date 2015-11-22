@@ -11,7 +11,8 @@ angular.module('FindMe', [
   'FindMe.directives',
   'FindMe.controllers',
   'FindMe.views',
-  'underscore'
+  'underscore',
+  'firebase'
 ])
 
 .run(function($ionicPlatform) {
@@ -32,8 +33,6 @@ angular.module('FindMe', [
 
   $ionicConfigProvider.tabs.position('bottom');
   $stateProvider
-
-
   .state('facebook-sign-in', {
     url: "/facebook-sign-in",
     templateUrl: "views/auth/facebook-sign-in.html",
@@ -80,6 +79,12 @@ angular.module('FindMe', [
     url: "/find-detail",
     templateUrl: "views/app/find-detail.html",
     controller: 'HomeCtrl'
+  })
+
+  .state('newfind', {
+    url: "/newfind",
+    templateUrl: "views/app/newfind.html",
+    controller: 'AddCtrl'
   })
   
 

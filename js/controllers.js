@@ -1,13 +1,15 @@
-angular.module('FindMe.controllers', [])
+angular.module('FindMe.controllers', ['firebase'])
 
 // APP - RIGHT MENU
 .controller('AppCtrl', function($scope){
 
-
-
 })
 
+
+//Controllers
+
 .controller('HomeCtrl', function($scope, $ionicActionSheet, $state, $ionicSideMenuDelegate, $ionicHistory){
+
 
 	//Back 
   	$scope.myGoBack = function() {
@@ -18,10 +20,8 @@ angular.module('FindMe.controllers', [])
 	//Menu Toggle
     $scope.toggleMenu = function(){
     $ionicSideMenuDelegate.toggleLeft();
-  }
+}
 
-  
-	
 
 	$scope.showLogOutMenu = function() {
 		// Show the action sheet
@@ -52,6 +52,46 @@ angular.module('FindMe.controllers', [])
 
 	};
 })
+
+.controller('AddCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray, $ionicSideMenuDelegate){
+
+
+	//Define Firebase collection
+	var ref = new Firebase('https://findmedb.firebaseio.com/finds');
+	$scope.finds = $firebaseArray(ref);
+
+	$scope.addFind = function(){
+		console.log('Adding find');
+		if ($scope.nombre) { var nombre = $scope.nombre; } else { var nombre = 'NOMBRE NULL'; }
+		if ($scope.notas) { var notas = $scope.notas; } else { var notas = null; }
+		if ($scope.foto) { var foto = $scope.foto; } else { var foto = 'http://img2.wikia.nocookie.net/__cb20130511180903/legendmarielu/images/b/b4/No_image_available.jpg'; }
+		if ($scope.lugar) { var lugar = $scope.lugar; } else { var lugar = null; }
+
+		$scope.finds.$add({
+			nombre : nombre,
+			notas : notas,
+			foto : foto, 
+			lugar : lugar, 
+			fecha : Firebase.ServerValue.TIMESTAMP
+		}).then(function(ref){
+			var id = ref.key();
+			console.log('Find added with name: '+nombre);
+			console.log('Find added with ID: '+id);
+		});
+
+		clearFields();
+		
+		
+	}
+
+	function clearFields(){
+		console.log('Clearing all fields...');
+
+		$scope.nombre = '';
+		$scope.notas = '';
+	}
+
+}])
 
 .controller('WelcomeCtrl', function($scope, $ionicModal, $state){
 	$scope.bgs = ["http://lorempixel.com/640/1136", "https://dl.dropboxusercontent.com/u/30873364/envato/ionFB/ion-fb-feed.gif"];

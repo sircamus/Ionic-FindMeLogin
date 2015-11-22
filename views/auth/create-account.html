@@ -7,8 +7,8 @@
   <ion-content class="padding">
     <div class="row form-heading">
       <div class="col"> 
-        <h1 class="form-title">Crear cuenta</h1>
-        <h3 class="form-sub-title">Usa tu cuenta de Facebook o Twitter</h3>
+        <h1 class="form-title">Registro</h1>
+        <h3 class="form-sub-title">Usar mi cuenta de Facebook o Twitter</h3>
         <div class="social-sign-up button-bar">
           <a class="button icon ion-social-facebook button-positive"></a>
           <a class="button icon ion-social-twitter button-calm"></a>
@@ -22,29 +22,19 @@
     </div>
     <div class="row form-wrapper">
       <div class="col">
-      <h3 class="form-sub-title">Ingresa tus datos</h3>
+      <h3 class="form-sub-title">Crear nueva cuenta</h3>
         <form name="signup_form" class="" novalidate>
-          <div class="form-fields-outer list list-inset">
-            <div class="row multi-inputs">
-              <div class="col">
-                <label class="item item-input">
-                  <input class="multi-input" type="text" placeholder="Nombre" name="name" ng-model="user.name" required>
-                </label>
-              </div>
-              <div class="col">
-                <label class="item item-input">
-                  <input class="multi-input" type="text" placeholder="Usuario" name="username" ng-model="user.userName" required>
-                </label>
-              </div>
-            </div>
+            <label class="item item-input">
+              <input class="multi-input" type="text" placeholder="Nombre" name="name" ng-model="user.name" required>
+            </label>
             <label class="item item-input">
               <input type="email" placeholder="Email" name="email" ng-model="user.email" required>
             </label>
             <label class="item item-input" show-hide-container>
               <input type="password" placeholder="Contraseña" name="password" ng-model="user.password" required show-hide-input>
             </label>
-            <button type="submit" class="sign-up button button-block" ng-click="doSignUp()" ng-disabled="signup_form.$invalid">
-              Crear
+            <button type="submit" class="sign-up button button-block positive" ng-click="doSignUp()" ng-disabled="signup_form.$invalid">
+              Crear cuenta
             </button>
             <p ng-show="error" class="message error">{{error}}</p>
           </div>
