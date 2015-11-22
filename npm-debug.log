@@ -1,0 +1,38 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'start' ]
+2 info using npm@2.14.7
+3 info using node@v4.2.1
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart FindMe@1.1.0
+6 verbose unsafe-perm in lifecycle true
+7 info start FindMe@1.1.0
+8 verbose unsafe-perm in lifecycle true
+9 info FindMe@1.1.0 Failed to exec start script
+10 verbose stack Error: FindMe@1.1.0 start: `http-server -a localhost -p 8000 -c-1`
+10 verbose stack spawn ENOENT
+10 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:17:16)
+10 verbose stack     at emitTwo (events.js:87:13)
+10 verbose stack     at ChildProcess.emit (events.js:172:7)
+10 verbose stack     at maybeClose (internal/child_process.js:818:16)
+10 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+11 verbose pkgid FindMe@1.1.0
+12 verbose cwd /Applications/XAMPP/xamppfiles/htdocs/FindMe
+13 error Darwin 15.0.0
+14 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "start"
+15 error node v4.2.1
+16 error npm  v2.14.7
+17 error file sh
+18 error code ELIFECYCLE
+19 error errno ENOENT
+20 error syscall spawn
+21 error FindMe@1.1.0 start: `http-server -a localhost -p 8000 -c-1`
+21 error spawn ENOENT
+22 error Failed at the FindMe@1.1.0 start script 'http-server -a localhost -p 8000 -c-1'.
+22 error This is most likely a problem with the FindMe package,
+22 error not with npm itself.
+22 error Tell the author that this fails on your system:
+22 error     http-server -a localhost -p 8000 -c-1
+22 error You can get their info via:
+22 error     npm owner ls FindMe
+22 error There is likely additional logging output above.
+23 verbose exit [ 1, true ]
