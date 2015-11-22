@@ -1,4 +1,4 @@
-angular.module('FindMe.controllers', [])
+angular.module('FindMe.controllers', ['firebase'])
 
 // APP - RIGHT MENU
 .controller('AppCtrl', function($scope){
