@@ -71,6 +71,8 @@ map {
     margin:20px auto;
 }
 
+.icon-top .icon{ display: block;margin: 0 auto;height: 32px;font-size: 32px;}
+
 /* ******************* CUSTOM STYLES ******************* */
 
 .ion-alert:before {

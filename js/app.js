@@ -14,20 +14,6 @@ angular.module('FindMe', [
   'underscore'
 ])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
-    }
-  });
-})
-
-
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
@@ -55,7 +41,7 @@ angular.module('FindMe', [
   .state('welcome-back', {
     url: "/welcome-back",
     templateUrl: "views/auth/welcome-back.html",
-    controller: 'WelcomeBackCtrl'
+    controller: 'SideCtrl'
   })
 
   .state('app', {

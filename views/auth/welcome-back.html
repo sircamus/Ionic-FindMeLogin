@@ -7,22 +7,13 @@
   <ion-content class="padding">
     <div class="row form-heading">
       <div class="col">
-        <h1 class="form-title">Iniciar Sesión</h1>
-        <h3 class="form-sub-title">Entrar con Facebook o Twitter</h3>
-        <div class="social-sign-up button-bar">
+        <h2 class="form-title">Iniciar sesión con Facebook</h2>
+        <div class="social-sign-up center">
           
-          <a class="button icon ion-social-facebook button-positive" href="#/app/home"></a>
-           
-
-
+          <a class="button icon ion-social-facebook button-positive" style="border-radius: 100px; padding: 0 100px;" ng-click="facebookSignIn()"></a>
+          
 
             <!-- ************* QUITAR EL HREF DE ARRIBA ***************** -->
-          
-
-
-
-
-          <a class="button icon ion-social-twitter button-calm"></a>
         </div>
       </div>
     </div>
@@ -33,6 +24,7 @@
     </div>
     <div class="row form-wrapper">
       <div class="col">
+      <h3 class="form-title">Usar cuenta existente</h3>
         <form name="login_form" class="" novalidate>
           <div class="form-fields-outer list list-inset">
             <label class="item item-input">

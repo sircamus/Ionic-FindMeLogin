@@ -10,7 +10,7 @@ angular.module('FindMe.controllers', ['firebase'])
 
 .controller('HomeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray, $ionicActionSheet, $ionicSideMenuDelegate, $state, $ionicHistory){
 
-//Model
+	//Model
 	$scope.model = { name: 'model' };		
 
 	//Define Firebase collection
@@ -32,6 +32,26 @@ angular.module('FindMe.controllers', ['firebase'])
 }])
 
 .controller('SideCtrl', function($scope, $ionicActionSheet,$ionicSideMenuDelegate, $state){
+
+		$scope.facebookSignIn = function(){
+		console.log("doing facebbok sign in");
+		var ref = new Firebase("https://findmedb.firebaseio.com/");
+		ref.authWithOAuthPopup("facebook", function(error, authData) {
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Authenticated successfully with payload:", authData)
+				$state.go('app.home');
+
+				console.log("Logged in as:", authData.facebook.displayName);
+				console.log("Profile Pic URL:", authData.facebook.profileImageURL);
+
+				$scope.usuario = authData.facebook.displayName;
+
+			}
+		});
+		
+	};
 
 	$scope.showLogOutMenu = function() {
 		// Show the action sheet
@@ -104,8 +124,8 @@ angular.module('FindMe.controllers', ['firebase'])
 		if ($scope.model.notas) { var notas = $scope.model.notas; } else { var notas = ''; }
 		if ($scope.foto) { var foto = $scope.foto; } else { var foto = 'http://img2.wikia.nocookie.net/__cb20130511180903/legendmarielu/images/b/b4/No_image_available.jpg'; }
 
-		if ($scope.loc.latitude) { var lat = $scope.loc.latitude; } else { var lat = null; }
-		if ($scope.loc.longitude) { var lgt = $scope.loc.longitude; } else { var lgt = null; }
+		if ($scope.loc.latitude) { var lat = $scope.loc.latitude; } else { var lat = '19.390858961426655'; }
+		if ($scope.loc.longitude) { var lgt = $scope.loc.longitude; } else { var lgt = '-99.14361265000002'; }
 		if ($scope.loc.desc) { var des = $scope.loc.desc; } else { var des = null; }
 
 		$scope.finds.$add({
@@ -150,10 +170,26 @@ angular.module('FindMe.controllers', ['firebase'])
 .controller('WelcomeCtrl', function($scope, $ionicModal, $state){
 	$scope.bgs = ["http://lorempixel.com/640/1136", "https://dl.dropboxusercontent.com/u/30873364/envato/ionFB/ion-fb-feed.gif"];
 
-	$scope.facebookSignIn = function(){
-		console.log("doing facebbok sign in");
-		$state.go('app.home');
-	};
+	// $scope.facebookSignIn = function(){
+	// 	console.log("doing facebbok sign in");
+	// 	var ref = new Firebase("https://findmedb.firebaseio.com/");
+	// 	ref.authWithOAuthPopup("facebook", function(error, authData) {
+	// 		if (error) {
+	// 			console.log("Login Failed!", error);
+	// 		} else {
+	// 			console.log("Authenticated successfully with payload:", authData)
+	// 			$state.go('app.home');
+
+	// 			console.log("Logged in as:", authData.facebook.displayName);
+	// 			console.log("Profile Pic URL:", authData.facebook.profileImageURL);
+
+	// 			var FBconn = $scope.userName = authData.facebook.displayName;
+	// 		}
+	// 	});
+		
+	// };
+
+
 
 	$ionicModal.fromTemplateUrl('views/partials/privacy-policy.html', {
     scope: $scope,
@@ -181,6 +217,7 @@ angular.module('FindMe.controllers', ['firebase'])
 .controller('CreateAccountCtrl', function($scope, $state){
 	$scope.doSignUp = function(){
 		console.log("doing sign up");
+		alert('¡Listo! Tu cuenta ha sido creada');
 		$state.go('app.home');
 	};
 })
