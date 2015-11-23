@@ -8,20 +8,30 @@ angular.module('FindMe.controllers', ['firebase'])
 
 //Controllers
 
-.controller('HomeCtrl', function($scope, $ionicActionSheet, $state, $ionicSideMenuDelegate, $ionicHistory){
+.controller('HomeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray, $ionicActionSheet, $ionicSideMenuDelegate, $state, $ionicHistory){
 
+//Model
+	$scope.model = { name: 'model' };		
+
+	//Define Firebase collection
+	var ref = new Firebase('https://findmedb.firebaseio.com/finds');
+	$scope.finds = $firebaseArray(ref);
 
 	//Back 
   	$scope.myGoBack = function() {
     $ionicHistory.goBack();
  
-}
+	}
+  
 
 	//Menu Toggle
-    $scope.toggleMenu = function(){
-    $ionicSideMenuDelegate.toggleLeft();
-}
+//     $scope.toggleMenu = function(){
+//     $ionicSideMenuDelegate.toggleLeft();
+// }
 
+}])
+
+.controller('SideCtrl', function($scope, $ionicActionSheet,$ionicSideMenuDelegate, $state){
 
 	$scope.showLogOutMenu = function() {
 		// Show the action sheet
@@ -53,43 +63,87 @@ angular.module('FindMe.controllers', ['firebase'])
 	};
 })
 
-.controller('AddCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray, $ionicSideMenuDelegate){
+.controller('AddCtrl', ['$scope', '$firebaseArray','$ionicPopup', function($scope, $firebaseArray, $ionicSideMenuDelegate, $state, $ionicPopup){
 
+	//Model
+	$scope.model = { name: 'model' };		
 
 	//Define Firebase collection
 	var ref = new Firebase('https://findmedb.firebaseio.com/finds');
 	$scope.finds = $firebaseArray(ref);
 
+	$scope.loc = {};
+
+	// $scope.positions = [];
+
+	// $scope.$on('mapInitialized', function(event, map) {
+	// $scope.map = map;
+	// });
+
+	// $scope.centerOnMe= function(){
+	// $scope.positions = [];
+	   
+
+ //    navigator.geolocation.getCurrentPosition(function(position) {
+ //    var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+ //    $scope.positions.push({lat: pos.k,lng: pos.B});
+ //    console.log(pos);
+
+ //    $scope.map.setCenter(pos);
+ //    });
+
+ //  }
+
+
 	$scope.addFind = function(){
+
 		console.log('Adding find');
-		if ($scope.nombre) { var nombre = $scope.nombre; } else { var nombre = 'NOMBRE NULL'; }
-		if ($scope.notas) { var notas = $scope.notas; } else { var notas = null; }
+
+		if ($scope.model.nombre) { var nombre = $scope.model.nombre; } else { var nombre = null; }
+		if ($scope.model.notas) { var notas = $scope.model.notas; } else { var notas = ''; }
 		if ($scope.foto) { var foto = $scope.foto; } else { var foto = 'http://img2.wikia.nocookie.net/__cb20130511180903/legendmarielu/images/b/b4/No_image_available.jpg'; }
-		if ($scope.lugar) { var lugar = $scope.lugar; } else { var lugar = null; }
+
+		if ($scope.loc.latitude) { var lat = $scope.loc.latitude; } else { var lat = null; }
+		if ($scope.loc.longitude) { var lgt = $scope.loc.longitude; } else { var lgt = null; }
+		if ($scope.loc.desc) { var des = $scope.loc.desc; } else { var des = null; }
 
 		$scope.finds.$add({
 			nombre : nombre,
 			notas : notas,
 			foto : foto, 
-			lugar : lugar, 
+			lat : lat,
+			lgt : lgt,
 			fecha : Firebase.ServerValue.TIMESTAMP
+
 		}).then(function(ref){
 			var id = ref.key();
+			$scope.loc = {};
+			// $scope.showAlert();
 			console.log('Find added with name: '+nombre);
 			console.log('Find added with ID: '+id);
-		});
+		}, function(error) {
+			console.log("Error:", error);
+		})
 
+		alert('¡Se guardó tu nuevo Find!');
 		clearFields();
 		
-		
+	
 	}
 
 	function clearFields(){
-		console.log('Clearing all fields...');
-
-		$scope.nombre = '';
-		$scope.notas = '';
+		console.log('Clearing fields...');
+		$scope.model.nombre = '';
+		$scope.model.notas = '';
 	}
+
+	// $scope.showAlert = function() {
+ //    $ionicPopup.alert({
+ //        title: 'Find Me',
+ //        template: '¡Se guardó tu nuevo Find!'
+ //    });
+	// }
 
 }])
 

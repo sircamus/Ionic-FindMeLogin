@@ -11,8 +11,7 @@ angular.module('FindMe', [
   'FindMe.directives',
   'FindMe.controllers',
   'FindMe.views',
-  'underscore',
-  'firebase'
+  'underscore'
 ])
 
 .run(function($ionicPlatform) {
@@ -29,9 +28,11 @@ angular.module('FindMe', [
 })
 
 
+
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $ionicConfigProvider.tabs.position('bottom');
+
   $stateProvider
   .state('facebook-sign-in', {
     url: "/facebook-sign-in",
@@ -61,7 +62,7 @@ angular.module('FindMe', [
     url: "/app",
     abstract: true,
     templateUrl: "views/app/side-menu.html",
-    controller: 'HomeCtrl'
+    controller: 'SideCtrl'
   })
 
   // APP HOME
@@ -76,9 +77,10 @@ angular.module('FindMe', [
   })
 
   .state('find-detail', {
-    url: "/find-detail",
+    url: "/find-detail/{id}",
     templateUrl: "views/app/find-detail.html",
-    controller: 'HomeCtrl'
+    controller: 'DetailsCtrl'
+
   })
 
   .state('newfind', {
@@ -86,6 +88,17 @@ angular.module('FindMe', [
     templateUrl: "views/app/newfind.html",
     controller: 'AddCtrl'
   })
+
+//   .state('find-detail', {
+//    url: "/find-detail/:id",  
+//    templateUrl: "views/app/find-detail.html", 
+//    controller: function($stateParams){
+//       $stateParams.id
+//    }
+// })
+
+
+
   
 
   // if none of the above states are matched, use this as the fallback

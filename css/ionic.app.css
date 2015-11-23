@@ -61,6 +61,16 @@
   display: block;
 }
 
+#map{
+    height:250px;
+    margin:20px auto;
+}
+
+map {
+    height:250px;
+    margin:20px auto;
+}
+
 /* ******************* CUSTOM STYLES ******************* */
 
 .ion-alert:before {

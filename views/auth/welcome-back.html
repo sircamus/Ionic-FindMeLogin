@@ -10,7 +10,18 @@
         <h1 class="form-title">Iniciar Sesión</h1>
         <h3 class="form-sub-title">Entrar con Facebook o Twitter</h3>
         <div class="social-sign-up button-bar">
-          <a class="button icon ion-social-facebook button-positive"></a>
+          
+          <a class="button icon ion-social-facebook button-positive" href="#/app/home"></a>
+           
+
+
+
+            <!-- ************* QUITAR EL HREF DE ARRIBA ***************** -->
+          
+
+
+
+
           <a class="button icon ion-social-twitter button-calm"></a>
         </div>
       </div>
@@ -25,7 +36,7 @@
         <form name="login_form" class="" novalidate>
           <div class="form-fields-outer list list-inset">
             <label class="item item-input">
-              <input type="text" placeholder="Usuario" name="username" ng-model="user.userName" required>
+              <input type="text" placeholder="Email" name="username" ng-model="user.userName" required>
             </label>
             <label class="item item-input" show-hide-container>
               <input type="password" placeholder="Contraseña" name="password" ng-model="user.password" required show-hide-input>
