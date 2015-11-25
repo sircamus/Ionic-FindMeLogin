@@ -28,7 +28,7 @@
 
 		    <div class="card">
 		      	<div class="item item-divider">
-		      		<h2 class="title">Ubicación:</h2>
+		      		<h2 class="title">Ubicación</h2>
 		      	</div>
 		      	<div class="item item-text-wrap">
 		      	<span>Mueve el marcador hasta tu ubicación</span>
@@ -36,6 +36,27 @@
 <!-- 		      		<button class="button icon-left ion-pinpoint" ng-click="centerOnMe()"> Obtener mi ubicación</button> -->
 		      	</div>
 		      </div>
+
+		      <div class="card">
+		      	<div class="item item-divider">
+		      		<h2 class="title">Elije un Avatar</h2>
+		      	</div>
+		      		<div class="list">
+					  <ion-radio ng-model="model.choice" ng-value="'key.png'" class="item item item-avatar" icon="ion-ios-checkmark balanced">
+					      <img src="img/key.png"> Para objetos pequeños
+					  </ion-radio>
+					  <ion-radio ng-model="model.choice" ng-value="'car.png'" class="item item item-avatar" icon="ion-ios-checkmark balanced">
+					      <img src="img/car.png"> Tu vehículo
+					  </ion-radio>
+					  <ion-radio ng-model="model.choice" ng-value="'pin.png'" class="item item item-avatar" icon="ion-ios-checkmark balanced">
+					      <img src="img/pin.png"> Ideal para lugares
+					  </ion-radio>
+					  <ion-radio ng-model="model.choice" ng-value="'heart.jpg'" class="item item item-avatar" icon="ion-ios-checkmark balanced">
+					      <img src="img/heart.jpg"> Find especial
+					  </ion-radio>
+					</div>
+		      	</div>
+
 			</div>
 <!-- 	<button class="button button-block button-stable icon ion-camera" ng-click="getPhoto()">
 		Tomar Foto

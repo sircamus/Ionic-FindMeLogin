@@ -41,7 +41,7 @@ angular.module('FindMe', [
   .state('welcome-back', {
     url: "/welcome-back",
     templateUrl: "views/auth/welcome-back.html",
-    controller: 'SideCtrl'
+    controller: 'WelcomeCtrl'
   })
 
   .state('app', {

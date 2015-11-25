@@ -33,25 +33,6 @@ angular.module('FindMe.controllers', ['firebase'])
 
 .controller('SideCtrl', function($scope, $ionicActionSheet,$ionicSideMenuDelegate, $state){
 
-		$scope.facebookSignIn = function(){
-		console.log("doing facebbok sign in");
-		var ref = new Firebase("https://findmedb.firebaseio.com/");
-		ref.authWithOAuthPopup("facebook", function(error, authData) {
-			if (error) {
-				console.log("Login Failed!", error);
-			} else {
-				console.log("Authenticated successfully with payload:", authData)
-				$state.go('app.home');
-
-				console.log("Logged in as:", authData.facebook.displayName);
-				console.log("Profile Pic URL:", authData.facebook.profileImageURL);
-
-				$scope.usuario = authData.facebook.displayName;
-
-			}
-		});
-		
-	};
 
 	$scope.showLogOutMenu = function() {
 		// Show the action sheet
@@ -83,7 +64,7 @@ angular.module('FindMe.controllers', ['firebase'])
 	};
 })
 
-.controller('AddCtrl', ['$scope', '$firebaseArray','$ionicPopup', function($scope, $firebaseArray, $ionicSideMenuDelegate, $state, $ionicPopup){
+.controller('AddCtrl', ['$scope', '$firebaseArray','$ionicPopup', '$state', function($scope, $firebaseArray, $ionicSideMenuDelegate, $state, $ionicPopup, $location){
 
 	//Model
 	$scope.model = { name: 'model' };		
@@ -116,22 +97,21 @@ angular.module('FindMe.controllers', ['firebase'])
  //  }
 
 
+
 	$scope.addFind = function(){
 
 		console.log('Adding find');
 
 		if ($scope.model.nombre) { var nombre = $scope.model.nombre; } else { var nombre = null; }
 		if ($scope.model.notas) { var notas = $scope.model.notas; } else { var notas = ''; }
-		if ($scope.foto) { var foto = $scope.foto; } else { var foto = 'http://img2.wikia.nocookie.net/__cb20130511180903/legendmarielu/images/b/b4/No_image_available.jpg'; }
-
+		if ($scope.model.choice) { var avatar = $scope.model.choice; } else { var avatar = 'default.png'; }
 		if ($scope.loc.latitude) { var lat = $scope.loc.latitude; } else { var lat = '19.390858961426655'; }
 		if ($scope.loc.longitude) { var lgt = $scope.loc.longitude; } else { var lgt = '-99.14361265000002'; }
-		if ($scope.loc.desc) { var des = $scope.loc.desc; } else { var des = null; }
 
 		$scope.finds.$add({
 			nombre : nombre,
 			notas : notas,
-			foto : foto, 
+			avatar : avatar, 
 			lat : lat,
 			lgt : lgt,
 			fecha : Firebase.ServerValue.TIMESTAMP
@@ -148,6 +128,8 @@ angular.module('FindMe.controllers', ['firebase'])
 
 		alert('¡Se guardó tu nuevo Find!');
 		clearFields();
+
+		$state.go('app.home');
 		
 	
 	}
@@ -156,6 +138,7 @@ angular.module('FindMe.controllers', ['firebase'])
 		console.log('Clearing fields...');
 		$scope.model.nombre = '';
 		$scope.model.notas = '';
+		$scope.model.choice = null;
 	}
 
 	// $scope.showAlert = function() {
@@ -170,24 +153,24 @@ angular.module('FindMe.controllers', ['firebase'])
 .controller('WelcomeCtrl', function($scope, $ionicModal, $state){
 	$scope.bgs = ["http://lorempixel.com/640/1136", "https://dl.dropboxusercontent.com/u/30873364/envato/ionFB/ion-fb-feed.gif"];
 
-	// $scope.facebookSignIn = function(){
-	// 	console.log("doing facebbok sign in");
-	// 	var ref = new Firebase("https://findmedb.firebaseio.com/");
-	// 	ref.authWithOAuthPopup("facebook", function(error, authData) {
-	// 		if (error) {
-	// 			console.log("Login Failed!", error);
-	// 		} else {
-	// 			console.log("Authenticated successfully with payload:", authData)
-	// 			$state.go('app.home');
+	$scope.facebookSignIn = function(){
+		console.log("doing facebbok sign in");
+		var ref = new Firebase("https://findmedb.firebaseio.com/");
+		ref.authWithOAuthPopup("facebook", function(error, authData) {
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Authenticated successfully with payload:", authData)
+				$state.go('app.home');
 
-	// 			console.log("Logged in as:", authData.facebook.displayName);
-	// 			console.log("Profile Pic URL:", authData.facebook.profileImageURL);
+				console.log("Logged in as:", authData.facebook.displayName);
+				console.log("Profile Pic URL:", authData.facebook.profileImageURL);
 
-	// 			var FBconn = $scope.userName = authData.facebook.displayName;
-	// 		}
-	// 	});
+				var FBconn = $scope.userName = authData.facebook.displayName;
+			}
+		});
 		
-	// };
+	};
 
 
 

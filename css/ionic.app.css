@@ -73,6 +73,11 @@ map {
 
 .icon-top .icon{ display: block;margin: 0 auto;height: 32px;font-size: 32px;}
 
+.list-scroll{
+  height: 180px;
+  overflow-y: scroll;
+}
+
 /* ******************* CUSTOM STYLES ******************* */
 
 .ion-alert:before {
