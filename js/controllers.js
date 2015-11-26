@@ -137,30 +137,6 @@ angular.module('FindMe.controllers', ['firebase'])
 		});
 		
 	};
-
-
-
-	$ionicModal.fromTemplateUrl('views/partials/privacy-policy.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.privacy_policy_modal = modal;
-  });
-
-	$ionicModal.fromTemplateUrl('views/partials/terms-of-service.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.terms_of_service_modal = modal;
-  });
-
-  $scope.showPrivacyPolicy = function() {
-    $scope.privacy_policy_modal.show();
-  };
-
-	$scope.showTerms = function() {
-    $scope.terms_of_service_modal.show();
-  };
 })
 
 
@@ -196,22 +172,23 @@ angular.module('FindMe.controllers', ['firebase'])
 	  password : password
 	}, function(error, authData) {
 	  if (error) {
-				switch (error.code) {
-			      case "INVALID_EMAIL":
-			        console.log("Los datos son incorrectos. Inténtalo nuevamente");
-			        break;
-			      case "INVALID_PASSWORD":
-			        console.log("Los datos son incorrectos. Inténtalo nuevamente");
-			        break;
-			      case "INVALID_USER":
-			        console.log("El usuario indicado no existe");
-			        break;
-			      default:
-			        console.log("Algo salió mal...", error);
-			    }
+				// switch (error.code) {
+			 //      case "INVALID_EMAIL":
+			 //        console.log("Los datos son incorrectos. Inténtalo nuevamente");
+			 //        break;
+			 //      case "INVALID_PASSWORD":
+			 //        console.log("Los datos son incorrectos. Inténtalo nuevamente");
+			 //        break;
+			 //      case "INVALID_USER":
+			 //        console.log("El usuario indicado no existe");
+			 //        break;
+			 //      default:
+			 //        console.log("Algo salió mal...", error);
+			 //    }
+			console.log("Algo salió mal...", error); 
 			} else {
 	    console.log("Sesión iniciada correctamente:", authData);
-	    alert("¡Bienvenido!");
+	    //alert("¡Bienvenido!");
 	    $state.go('app.home');
 	  }
 	});
@@ -234,26 +211,27 @@ angular.module('FindMe.controllers', ['firebase'])
 	  password : password
 	}, function(error, authData) {
 	  if (error) {
-				switch (error.code) {
-			      case "INVALID_EMAIL":
-			        console.log("Los datos son incorrectos. Inténtalo nuevamente");
-			        alert("Los datos son incorrectos. Inténtalo nuevamente");
-			        break;
-			      case "INVALID_PASSWORD":
-			        console.log("Los datos son incorrectos. Inténtalo nuevamente");
-			        alert("Los datos son incorrectos. Inténtalo nuevamente");
-			        break;
-			      case "INVALID_USER":
-			        console.log("El usuario indicado no existe");
-			        alert("El email indicado no existe");
-			        break;
-			      default:
-			        console.log("Algo salió mal...", error);
-			        alert("Algo salió mal...", error);
-			    }
+				// switch (error.code) {
+			 //      case "INVALID_EMAIL":
+			 //        console.log("Los datos son incorrectos. Inténtalo nuevamente");
+			 //        alert("Los datos son incorrectos. Inténtalo nuevamente");
+			 //        break;
+			 //      case "INVALID_PASSWORD":
+			 //        console.log("Los datos son incorrectos. Inténtalo nuevamente");
+			 //        alert("Los datos son incorrectos. Inténtalo nuevamente");
+			 //        break;
+			 //      case "INVALID_USER":
+			 //        console.log("El usuario indicado no existe");
+			 //        alert("El email indicado no existe");
+			 //        break;
+			 //      default:
+			 //        console.log("Algo salió mal...", error);
+			    //     alert("Algo salió mal...", error);
+			    // }
+			console.log("Algo salió mal...", error);    
 			} else {
 	    console.log("Sesión iniciada correctamente:", authData);
-		alert("¡Bienvenido!");
+		//alert("¡Bienvenido!");
 	    $state.go('app.home');
 	  }
 	});
