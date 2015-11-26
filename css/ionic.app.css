@@ -78,6 +78,13 @@ map {
   overflow-y: scroll;
 }
 
+.btnEntrar{
+  border-radius: 100px;
+  padding: 0 70px;
+  margin-top: 25px;
+
+}
+
 /* ******************* CUSTOM STYLES ******************* */
 
 .ion-alert:before {

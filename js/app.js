@@ -1,4 +1,5 @@
 angular.module('underscore', [])
+
 .factory('_', function() {
   return window._; // assumes underscore has already been loaded on the page
 });
@@ -14,6 +15,18 @@ angular.module('FindMe', [
   'underscore'
 ])
 
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+  });
+})
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
@@ -41,7 +54,7 @@ angular.module('FindMe', [
   .state('welcome-back', {
     url: "/welcome-back",
     templateUrl: "views/auth/welcome-back.html",
-    controller: 'WelcomeCtrl'
+    controller: 'WelcomeBackCtrl'
   })
 
   .state('app', {
@@ -75,20 +88,6 @@ angular.module('FindMe', [
     controller: 'AddCtrl'
   })
 
-//   .state('find-detail', {
-//    url: "/find-detail/:id",  
-//    templateUrl: "views/app/find-detail.html", 
-//    controller: function($stateParams){
-//       $stateParams.id
-//    }
-// })
-
-
-
-  
-
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/facebook-sign-in');
-})
-
-;
+});

@@ -1,11 +1,5 @@
 angular.module('FindMe.controllers', ['firebase'])
 
-// APP - RIGHT MENU
-.controller('AppCtrl', function($scope){
-
-})
-
-
 //Controllers
 
 .controller('HomeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray, $ionicActionSheet, $ionicSideMenuDelegate, $state, $ionicHistory){
@@ -14,7 +8,7 @@ angular.module('FindMe.controllers', ['firebase'])
 	$scope.model = { name: 'model' };		
 
 	//Define Firebase collection
-	var ref = new Firebase('https://findmedb.firebaseio.com/finds');
+	var ref = new Firebase('https://findmedb.firebaseio.com/users/finds');
 	$scope.finds = $firebaseArray(ref);
 
 	//Back 
@@ -25,11 +19,9 @@ angular.module('FindMe.controllers', ['firebase'])
   
 
 	//Menu Toggle
-//     $scope.toggleMenu = function(){
-//     $ionicSideMenuDelegate.toggleLeft();
-// }
-
 }])
+
+
 
 .controller('SideCtrl', function($scope, $ionicActionSheet,$ionicSideMenuDelegate, $state){
 
@@ -64,38 +56,19 @@ angular.module('FindMe.controllers', ['firebase'])
 	};
 })
 
-.controller('AddCtrl', ['$scope', '$firebaseArray','$ionicPopup', '$state', function($scope, $firebaseArray, $ionicSideMenuDelegate, $state, $ionicPopup, $location){
+
+
+.controller('AddCtrl', ['$scope', '$firebaseArray','$ionicPopup', '$state', function($scope, $firebaseArray, $ionicSideMenuDelegate, $state, $ionicPopup, $location, $authClientProvider){
 
 	//Model
-	$scope.model = { name: 'model' };		
+	$scope.model = { name: 'model' };	
+
 
 	//Define Firebase collection
-	var ref = new Firebase('https://findmedb.firebaseio.com/finds');
+	var ref = new Firebase("https://findmedb.firebaseio.com/users/finds");
 	$scope.finds = $firebaseArray(ref);
 
 	$scope.loc = {};
-
-	// $scope.positions = [];
-
-	// $scope.$on('mapInitialized', function(event, map) {
-	// $scope.map = map;
-	// });
-
-	// $scope.centerOnMe= function(){
-	// $scope.positions = [];
-	   
-
- //    navigator.geolocation.getCurrentPosition(function(position) {
- //    var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
- //    $scope.positions.push({lat: pos.k,lng: pos.B});
- //    console.log(pos);
-
- //    $scope.map.setCenter(pos);
- //    });
-
- //  }
-
 
 
 	$scope.addFind = function(){
@@ -140,15 +113,9 @@ angular.module('FindMe.controllers', ['firebase'])
 		$scope.model.notas = '';
 		$scope.model.choice = null;
 	}
-
-	// $scope.showAlert = function() {
- //    $ionicPopup.alert({
- //        title: 'Find Me',
- //        template: '¡Se guardó tu nuevo Find!'
- //    });
-	// }
-
 }])
+
+
 
 .controller('WelcomeCtrl', function($scope, $ionicModal, $state){
 	$scope.bgs = ["http://lorempixel.com/640/1136", "https://dl.dropboxusercontent.com/u/30873364/envato/ionFB/ion-fb-feed.gif"];
@@ -161,12 +128,11 @@ angular.module('FindMe.controllers', ['firebase'])
 				console.log("Login Failed!", error);
 			} else {
 				console.log("Authenticated successfully with payload:", authData)
-				$state.go('app.home');
+				
 
 				console.log("Logged in as:", authData.facebook.displayName);
 				console.log("Profile Pic URL:", authData.facebook.profileImageURL);
-
-				var FBconn = $scope.userName = authData.facebook.displayName;
+				$state.go('app.home');
 			}
 		});
 		
@@ -197,48 +163,99 @@ angular.module('FindMe.controllers', ['firebase'])
   };
 })
 
-.controller('CreateAccountCtrl', function($scope, $state){
-	$scope.doSignUp = function(){
-		console.log("doing sign up");
-		alert('¡Listo! Tu cuenta ha sido creada');
-		$state.go('app.home');
-	};
-})
 
-.controller('WelcomeBackCtrl', function($scope, $ionicModal, $state){
-	$scope.doLogIn = function(){
-		console.log("doing log in");
-		$state.go('app.home');
-	};
 
-	$ionicModal.fromTemplateUrl('views/partials/forgot-password.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.forgot_password_modal = modal;
-  });
+.controller('CreateAccountCtrl', ['$scope', '$state', function($scope, $state, $authClientProvider){
 
-  $scope.showForgotPassword = function() {
-    $scope.forgot_password_modal.show();
-  };
+	//Define Firebase collection
+	var ref = new Firebase('https://findmedb.firebaseio.com/users');
 
-	$scope.requestNewPassword = function() {
-    console.log("requesting new password");
-		$state.go('app.home');
-  };
 
-  // //Cleanup the modal when we're done with it!
-  // $scope.$on('$destroy', function() {
-  //   $scope.modal.remove();
-  // });
-  // // Execute action on hide modal
-  // $scope.$on('modal.hidden', function() {
-  //   // Execute action
-  // });
-  // // Execute action on remove modal
-  // $scope.$on('modal.removed', function() {
-  //   // Execute action
-  // });
-})
+	$scope.doSignUp = function(email, password){
+		console.log("Creando cuenta...");
+		var email = $("#register-email").val();
+        var password = $("#register-password").val();
+		ref.createUser({
+			email    : email,
+			password : password
+		}, function(error, userData) {
+			if (error) {
+				console.log("Error al crear la cuenta:", error);
+				alert(error);
+			} else {
+				console.log("Cuenta creada con uid:", userData.uid);
+				doLogin(email, password);
+			}
+		})
+	}
 
-;
+	function doLogin(email, password) {
+	var ref = new Firebase('https://findmedb.firebaseio.com/users');
+	  ref.authWithPassword({
+	  email    : email,
+	  password : password
+	}, function(error, authData) {
+	  if (error) {
+				switch (error.code) {
+			      case "INVALID_EMAIL":
+			        console.log("Los datos son incorrectos. Inténtalo nuevamente");
+			        break;
+			      case "INVALID_PASSWORD":
+			        console.log("Los datos son incorrectos. Inténtalo nuevamente");
+			        break;
+			      case "INVALID_USER":
+			        console.log("El usuario indicado no existe");
+			        break;
+			      default:
+			        console.log("Algo salió mal...", error);
+			    }
+			} else {
+	    console.log("Sesión iniciada correctamente:", authData);
+	    alert("¡Bienvenido!");
+	    $state.go('app.home');
+	  }
+	});
+	}
+}])
+
+
+.controller('WelcomeBackCtrl', ['$scope', '$state', function($scope, $state, $authClientProvider){
+
+	//Model
+	$scope.model = { name: 'model' };	
+
+	$scope.doLogIn = function(email, password) {
+	var ref = new Firebase('https://findmedb.firebaseio.com/users');
+	var email = $("#login-email").val();
+    var password = $("#login-password").val();
+
+	  ref.authWithPassword({
+	  email    : email,
+	  password : password
+	}, function(error, authData) {
+	  if (error) {
+				switch (error.code) {
+			      case "INVALID_EMAIL":
+			        console.log("Los datos son incorrectos. Inténtalo nuevamente");
+			        alert("Los datos son incorrectos. Inténtalo nuevamente");
+			        break;
+			      case "INVALID_PASSWORD":
+			        console.log("Los datos son incorrectos. Inténtalo nuevamente");
+			        alert("Los datos son incorrectos. Inténtalo nuevamente");
+			        break;
+			      case "INVALID_USER":
+			        console.log("El usuario indicado no existe");
+			        alert("El email indicado no existe");
+			        break;
+			      default:
+			        console.log("Algo salió mal...", error);
+			        alert("Algo salió mal...", error);
+			    }
+			} else {
+	    console.log("Sesión iniciada correctamente:", authData);
+		alert("¡Bienvenido!");
+	    $state.go('app.home');
+	  }
+	});
+	}
+}]);
