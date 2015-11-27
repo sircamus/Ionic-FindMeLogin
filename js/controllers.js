@@ -1,5 +1,6 @@
 angular.module('FindMe.controllers', ['firebase'])
 
+
 //Controllers
 
 .controller('HomeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray, $ionicActionSheet, $ionicSideMenuDelegate, $state, $ionicHistory){
@@ -8,7 +9,7 @@ angular.module('FindMe.controllers', ['firebase'])
 	$scope.model = { name: 'model' };		
 
 	//Define Firebase collection
-	var ref = new Firebase('https://findmedb.firebaseio.com/users/finds');
+	var ref = new Firebase('https://fmtrmp1.firebaseio.com/users/finds');
 	$scope.finds = $firebaseArray(ref);
 
 	//Back 
@@ -49,6 +50,8 @@ angular.module('FindMe.controllers', ['firebase'])
 			destructiveButtonClicked: function(){
 				//Called when the destructive button is clicked.
 				//Return true to close the action sheet, or false to keep it opened.
+				var ref = new Firebase("https://fmtrmp1.firebaseio.com/");
+				ref.unauth();
 				$state.go('facebook-sign-in');
 			}
 		});
@@ -60,12 +63,12 @@ angular.module('FindMe.controllers', ['firebase'])
 
 .controller('AddCtrl', ['$scope', '$firebaseArray','$ionicPopup', '$state', function($scope, $firebaseArray, $ionicSideMenuDelegate, $state, $ionicPopup, $location, $authClientProvider){
 
+	
 	//Model
 	$scope.model = { name: 'model' };	
 
-
 	//Define Firebase collection
-	var ref = new Firebase("https://findmedb.firebaseio.com/users/finds");
+	var ref = new Firebase("https://fmtrmp1.firebaseio.com/users/finds");
 	$scope.finds = $firebaseArray(ref);
 
 	$scope.loc = {};
@@ -120,23 +123,23 @@ angular.module('FindMe.controllers', ['firebase'])
 .controller('WelcomeCtrl', function($scope, $ionicModal, $state){
 	$scope.bgs = ["http://lorempixel.com/640/1136", "https://dl.dropboxusercontent.com/u/30873364/envato/ionFB/ion-fb-feed.gif"];
 
-	$scope.facebookSignIn = function(){
-		console.log("doing facebbok sign in");
-		var ref = new Firebase("https://findmedb.firebaseio.com/");
-		ref.authWithOAuthPopup("facebook", function(error, authData) {
-			if (error) {
-				console.log("Login Failed!", error);
-			} else {
-				console.log("Authenticated successfully with payload:", authData)
+	// $scope.facebookSignIn = function(){
+	// 	console.log("doing facebbok sign in");
+	// 	var ref = new Firebase("https://fmtrmp1.firebaseio.com/");
+	// 	ref.authWithOAuthPopup("facebook", function(error, authData) {
+	// 		if (error) {
+	// 			console.log("Login Failed!", error);
+	// 		} else {
+	// 			console.log("Authenticated successfully with payload:", authData)
 				
 
-				console.log("Logged in as:", authData.facebook.displayName);
-				console.log("Profile Pic URL:", authData.facebook.profileImageURL);
-				$state.go('app.home');
-			}
-		});
+	// 			console.log("Logged in as:", authData.facebook.displayName);
+	// 			console.log("Profile Pic URL:", authData.facebook.profileImageURL);
+	// 			$state.go('app.home');
+	// 		}
+	// 	});
 		
-	};
+	// };
 })
 
 
@@ -144,7 +147,7 @@ angular.module('FindMe.controllers', ['firebase'])
 .controller('CreateAccountCtrl', ['$scope', '$state', function($scope, $state, $authClientProvider){
 
 	//Define Firebase collection
-	var ref = new Firebase('https://findmedb.firebaseio.com/users');
+	var ref = new Firebase('https://fmtrmp1.firebaseio.com/users');
 
 
 	$scope.doSignUp = function(email, password){
@@ -165,30 +168,48 @@ angular.module('FindMe.controllers', ['firebase'])
 		})
 	}
 
+	function getName(authData) {
+  switch(authData.provider) {
+     case 'password':
+       return authData.password.email.replace(/@.*/, '');
+  }
+}
+
 	function doLogin(email, password) {
-	var ref = new Firebase('https://findmedb.firebaseio.com/users');
+	var isNewUser = true;
+	var ref = new Firebase('https://fmtrmp1.firebaseio.com/');
+	ref.onAuth(function(authData) {
+	  if (authData && isNewUser) {
+	    // save the user's profile into the database so we can list users,
+	    // use them in Security and Firebase Rules, and show profiles
+	    ref.child("users").child(authData.uid).set({
+	      provider: authData.provider,
+	      name: getName(authData)
+	    })
+	  }
+	})
 	  ref.authWithPassword({
 	  email    : email,
 	  password : password
 	}, function(error, authData) {
 	  if (error) {
-				// switch (error.code) {
-			 //      case "INVALID_EMAIL":
-			 //        console.log("Los datos son incorrectos. Inténtalo nuevamente");
-			 //        break;
-			 //      case "INVALID_PASSWORD":
-			 //        console.log("Los datos son incorrectos. Inténtalo nuevamente");
-			 //        break;
-			 //      case "INVALID_USER":
-			 //        console.log("El usuario indicado no existe");
-			 //        break;
-			 //      default:
-			 //        console.log("Algo salió mal...", error);
-			 //    }
+				switch (error.code) {
+			      case "INVALID_EMAIL":
+			        console.log("Los datos son incorrectos. Inténtalo nuevamente");
+			        break;
+			      case "INVALID_PASSWORD":
+			        console.log("Los datos son incorrectos. Inténtalo nuevamente");
+			        break;
+			      case "INVALID_USER":
+			        console.log("El usuario indicado no existe");
+			        break;
+			      default:
+			        console.log("Algo salió mal...", error);
+			    }
 			console.log("Algo salió mal...", error); 
 			} else {
 	    console.log("Sesión iniciada correctamente:", authData);
-	    //alert("¡Bienvenido!");
+	    alert("¡Bienvenido!");
 	    $state.go('app.home');
 	  }
 	});
@@ -202,7 +223,7 @@ angular.module('FindMe.controllers', ['firebase'])
 	$scope.model = { name: 'model' };	
 
 	$scope.doLogIn = function(email, password) {
-	var ref = new Firebase('https://findmedb.firebaseio.com/users');
+	var ref = new Firebase('https://fmtrmp1.firebaseio.com/users');
 	var email = $("#login-email").val();
     var password = $("#login-password").val();
 
@@ -211,27 +232,27 @@ angular.module('FindMe.controllers', ['firebase'])
 	  password : password
 	}, function(error, authData) {
 	  if (error) {
-				// switch (error.code) {
-			 //      case "INVALID_EMAIL":
-			 //        console.log("Los datos son incorrectos. Inténtalo nuevamente");
-			 //        alert("Los datos son incorrectos. Inténtalo nuevamente");
-			 //        break;
-			 //      case "INVALID_PASSWORD":
-			 //        console.log("Los datos son incorrectos. Inténtalo nuevamente");
-			 //        alert("Los datos son incorrectos. Inténtalo nuevamente");
-			 //        break;
-			 //      case "INVALID_USER":
-			 //        console.log("El usuario indicado no existe");
-			 //        alert("El email indicado no existe");
-			 //        break;
-			 //      default:
-			 //        console.log("Algo salió mal...", error);
-			    //     alert("Algo salió mal...", error);
-			    // }
+				switch (error.code) {
+			      case "INVALID_EMAIL":
+			        console.log("Los datos son incorrectos. Inténtalo nuevamente");
+			        alert("Los datos son incorrectos. Inténtalo nuevamente");
+			        break;
+			      case "INVALID_PASSWORD":
+			        console.log("Los datos son incorrectos. Inténtalo nuevamente");
+			        alert("Los datos son incorrectos. Inténtalo nuevamente");
+			        break;
+			      case "INVALID_USER":
+			        console.log("El usuario indicado no existe");
+			        alert("El email indicado no existe");
+			        break;
+			      default:
+			        console.log("Algo salió mal...", error);
+			        alert("Algo salió mal...", error);
+			    }
 			console.log("Algo salió mal...", error);    
 			} else {
 	    console.log("Sesión iniciada correctamente:", authData);
-		//alert("¡Bienvenido!");
+		alert("¡Bienvenido!");
 	    $state.go('app.home');
 	  }
 	});
