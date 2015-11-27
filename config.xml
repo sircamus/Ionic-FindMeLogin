@@ -76,7 +76,9 @@
   <plugin name="com.ionic.keyboard" spec="https://github.com/driftyco/ionic-plugins-keyboard.git"/>
   <plugin name="cordova-plugin-splashscreen" spec="^2.1.0"/>
   <plugin name="cordova-plugin-whitelist" spec="^1.0.0"/>
-    <allow-intent href="*" />
+  <allow-navigation href="http://example.com/*" />
+  <allow-navigation href="*" />
+  <allow-intent href="*" />
   <allow-intent href="*.firebaseio.com" />
   <allow-intent href="auth.firebase.com" />
   <allow-intent href="fmtrmp1.firebaseio.com" />
