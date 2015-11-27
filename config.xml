@@ -22,10 +22,6 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
-  <allow-intent href="*.firebaseio.com" />
-  <allow-intent href="auth.firebase.com" />
-  <allow-intent href="findmedb.firebaseio.com" />
-  <allow-intent href="*" />
   <platform name="android">
     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
     <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>
@@ -80,4 +76,8 @@
   <plugin name="com.ionic.keyboard" spec="https://github.com/driftyco/ionic-plugins-keyboard.git"/>
   <plugin name="cordova-plugin-splashscreen" spec="^2.1.0"/>
   <plugin name="cordova-plugin-whitelist" spec="^1.0.0"/>
+    <allow-intent href="*" />
+  <allow-intent href="*.firebaseio.com" />
+  <allow-intent href="auth.firebase.com" />
+  <allow-intent href="fmtrmp1.firebaseio.com" />
 </widget>
