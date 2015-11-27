@@ -77,7 +77,9 @@
   <plugin name="cordova-plugin-splashscreen" spec="^2.1.0"/>
   <plugin name="cordova-plugin-whitelist" spec="^1.0.0"/>
   <allow-navigation href="http://example.com/*" />
-  <allow-navigation href="*" />
+  <allow-navigation href="http://*/*" />
+  <allow-navigation href="https://*/*" />
+  <allow-navigation href="data:*" />
   <allow-intent href="*" />
   <allow-intent href="*.firebaseio.com" />
   <allow-intent href="auth.firebase.com" />
