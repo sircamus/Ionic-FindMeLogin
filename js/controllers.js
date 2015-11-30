@@ -7,9 +7,14 @@ angular.module('FindMe.controllers', ['firebase'])
 
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 	//Model
 	$scope.model = { name: 'model' };	
 
+=======
+//Model
+	$scope.model = { name: 'model' };		
+>>>>>>> parent of 81bd032... Login changes
 
 	//Define Firebase collection
 	var ref = new Firebase('https://fmdevice.firebaseio.com/users/finds');
@@ -34,6 +39,7 @@ angular.module('FindMe.controllers', ['firebase'])
 }])
 
 
+<<<<<<< HEAD
 
 .controller('SideCtrl', function($scope, $ionicActionSheet,$ionicSideMenuDelegate, $state){
 =======
@@ -48,6 +54,8 @@ angular.module('FindMe.controllers', ['firebase'])
 >>>>>>> parent of 2d305b2... maps and insert working
 
 
+=======
+>>>>>>> parent of 81bd032... Login changes
 	$scope.showLogOutMenu = function() {
 		// Show the action sheet
 		var hideSheet = $ionicActionSheet.show({
@@ -109,6 +117,7 @@ angular.module('FindMe.controllers', ['firebase'])
 
 		if ($scope.model.nombre) { var nombre = $scope.model.nombre; } else { var nombre = null; }
 		if ($scope.model.notas) { var notas = $scope.model.notas; } else { var notas = ''; }
+<<<<<<< HEAD
 		if ($scope.model.choice) { var avatar = $scope.model.choice; } else { var avatar = 'default.png'; }
 		if ($scope.loc.latitude) { var lat = $scope.loc.latitude; } else { var lat = '19.390858961426655'; }
 		if ($scope.loc.longitude) { var lgt = $scope.loc.longitude; } else { var lgt = '-99.14361265000002'; }
@@ -118,6 +127,13 @@ angular.module('FindMe.controllers', ['firebase'])
 		if ($scope.foto) { var foto = $scope.foto; } else { var foto = 'http://img2.wikia.nocookie.net/__cb20130511180903/legendmarielu/images/b/b4/No_image_available.jpg'; }
 		if ($scope.lugar) { var lugar = $scope.lugar; } else { var lugar = null; }
 >>>>>>> parent of 2d305b2... maps and insert working
+=======
+		if ($scope.foto) { var foto = $scope.foto; } else { var foto = 'http://img2.wikia.nocookie.net/__cb20130511180903/legendmarielu/images/b/b4/No_image_available.jpg'; }
+
+		if ($scope.loc.latitude) { var lat = $scope.loc.latitude; } else { var lat = null; }
+		if ($scope.loc.longitude) { var lgt = $scope.loc.longitude; } else { var lgt = null; }
+		if ($scope.loc.desc) { var des = $scope.loc.desc; } else { var des = null; }
+>>>>>>> parent of 81bd032... Login changes
 
 		$scope.finds.$add({
 			nombre : nombre,
@@ -165,6 +181,7 @@ angular.module('FindMe.controllers', ['firebase'])
 .controller('WelcomeCtrl', function($scope, $ionicModal, $state){
 	$scope.bgs = ["http://lorempixel.com/640/1136", "https://dl.dropboxusercontent.com/u/30873364/envato/ionFB/ion-fb-feed.gif"];
 
+<<<<<<< HEAD
 	// $scope.facebookSignIn = function(){
 	// 	console.log("doing facebbok sign in");
 	// 	var ref = new Firebase("https://fmdevice.firebaseio.com/");
@@ -185,6 +202,12 @@ angular.module('FindMe.controllers', ['firebase'])
 })
 
 
+=======
+	$scope.facebookSignIn = function(){
+		console.log("doing facebbok sign in");
+		$state.go('app.home');
+	};
+>>>>>>> parent of 81bd032... Login changes
 
 .controller('CreateAccountCtrl', ['$scope', '$state', function($scope, $state, $authClientProvider){
 
@@ -192,6 +215,7 @@ angular.module('FindMe.controllers', ['firebase'])
 	var ref = new Firebase('https://fmdevice.firebaseio.com/users');
 
 
+<<<<<<< HEAD
 	$scope.doSignUp = function(email, password){
 		console.log("Creando cuenta...");
 		var email = $("#register-email").val();
@@ -209,6 +233,20 @@ angular.module('FindMe.controllers', ['firebase'])
 			}
 		})
 	}
+=======
+.controller('CreateAccountCtrl', function($scope, $state){
+	$scope.doSignUp = function(){
+		console.log("doing sign up");
+		$state.go('app.home');
+	};
+})
+
+.controller('WelcomeBackCtrl', function($scope, $ionicModal, $state){
+	$scope.doLogIn = function(){
+		console.log("doing log in");
+		$state.go('app.home');
+	};
+>>>>>>> parent of 81bd032... Login changes
 
 	function getName(authData) {
   switch(authData.provider) {

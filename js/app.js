@@ -30,7 +30,11 @@ angular.module('FindMe', [
 })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> parent of 81bd032... Login changes
 
 >>>>>>> parent of 2d305b2... maps and insert working
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {

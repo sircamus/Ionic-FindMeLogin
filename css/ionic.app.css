@@ -72,6 +72,7 @@ map {
     margin:20px auto;
 }
 
+<<<<<<< HEAD
 .icon-top .icon{ display: block;margin: 0 auto;height: 32px;font-size: 32px;}
 
 .list-scroll{
@@ -88,6 +89,8 @@ map {
 
 =======
 >>>>>>> parent of 2d305b2... maps and insert working
+=======
+>>>>>>> parent of 81bd032... Login changes
 /* ******************* CUSTOM STYLES ******************* */
 
 .ion-alert:before {
