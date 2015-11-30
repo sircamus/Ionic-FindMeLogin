@@ -24,14 +24,14 @@
       <div class="col">
       <h3 class="form-sub-title">Crear nueva cuenta</h3>
         <form name="signup_form" class="" novalidate>
-            <!-- <label class="item item-input">
-              <input type="text" placeholder="Nombre" name="name">
-            </label> -->
             <label class="item item-input">
-              <input type="email" placeholder="Email" required name="email" id="register-email" ng-model="model.email">
+              <input class="multi-input" type="text" placeholder="Nombre" name="name" ng-model="user.name" required>
+            </label>
+            <label class="item item-input">
+              <input type="email" placeholder="Email" name="email" ng-model="user.email" required>
             </label>
             <label class="item item-input" show-hide-container>
-              <input type="password" placeholder="Contraseña" required name="password" id="register-password" ng-model="model.password" show-hide-input>
+              <input type="password" placeholder="Contraseña" name="password" ng-model="user.password" required show-hide-input>
             </label>
 <<<<<<< HEAD
 

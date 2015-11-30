@@ -1,5 +1,13 @@
 angular.module('FindMe.controllers', ['firebase'])
 
+<<<<<<< HEAD
+=======
+// APP - RIGHT MENU
+.controller('AppCtrl', function($scope){
+
+})
+
+>>>>>>> parent of fb4c10d... Login working!!!
 
 //Controllers
 
@@ -17,7 +25,11 @@ angular.module('FindMe.controllers', ['firebase'])
 >>>>>>> parent of 81bd032... Login changes
 
 	//Define Firebase collection
+<<<<<<< HEAD
 	var ref = new Firebase('https://fmdevice.firebaseio.com/users/finds');
+=======
+	var ref = new Firebase('https://findmedb.firebaseio.com/finds');
+>>>>>>> parent of fb4c10d... Login working!!!
 	$scope.finds = $firebaseArray(ref);
 =======
 >>>>>>> parent of 2d305b2... maps and insert working
@@ -29,6 +41,7 @@ angular.module('FindMe.controllers', ['firebase'])
  	
 	}
 
+<<<<<<< HEAD
 	  //Remove Rental
 	$scope.remove = function(){
 		
@@ -40,6 +53,14 @@ angular.module('FindMe.controllers', ['firebase'])
 
 
 <<<<<<< HEAD
+=======
+	//Menu Toggle
+//     $scope.toggleMenu = function(){
+//     $ionicSideMenuDelegate.toggleLeft();
+// }
+
+}])
+>>>>>>> parent of fb4c10d... Login working!!!
 
 .controller('SideCtrl', function($scope, $ionicActionSheet,$ionicSideMenuDelegate, $state){
 =======
@@ -89,12 +110,17 @@ angular.module('FindMe.controllers', ['firebase'])
 })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 .controller('AddCtrl', ['$scope', '$firebaseArray','$ionicPopup', '$state', function($scope, $firebaseArray, $ionicSideMenuDelegate, $state, $ionicPopup, $location, $authClientProvider){
+=======
+.controller('AddCtrl', ['$scope', '$firebaseArray','$ionicPopup', '$state', function($scope, $firebaseArray, $ionicSideMenuDelegate, $state, $ionicPopup, $location){
+>>>>>>> parent of fb4c10d... Login working!!!
 
 	
 	//Model
+<<<<<<< HEAD
 	$scope.model = { name: 'model' };	
 =======
 .controller('AddCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray, $ionicSideMenuDelegate){
@@ -103,10 +129,38 @@ angular.module('FindMe.controllers', ['firebase'])
 
 	//Define Firebase collection
 	var ref = new Firebase("https://fmdevice.firebaseio.com/users/finds");
+=======
+	$scope.model = { name: 'model' };		
+
+	//Define Firebase collection
+	var ref = new Firebase('https://findmedb.firebaseio.com/finds');
+>>>>>>> parent of fb4c10d... Login working!!!
 	$scope.finds = $firebaseArray(ref);
 
 <<<<<<< HEAD
 	$scope.loc = {};
+
+	// $scope.positions = [];
+
+	// $scope.$on('mapInitialized', function(event, map) {
+	// $scope.map = map;
+	// });
+
+	// $scope.centerOnMe= function(){
+	// $scope.positions = [];
+	   
+
+ //    navigator.geolocation.getCurrentPosition(function(position) {
+ //    var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+ //    $scope.positions.push({lat: pos.k,lng: pos.B});
+ //    console.log(pos);
+
+ //    $scope.map.setCenter(pos);
+ //    });
+
+ //  }
+
 
 
 =======
@@ -167,8 +221,8 @@ angular.module('FindMe.controllers', ['firebase'])
 		$scope.model.notas = '';
 		$scope.model.choice = null;
 	}
-}])
 
+<<<<<<< HEAD
 =======
 		console.log('Clearing all fields...');
 
@@ -176,11 +230,21 @@ angular.module('FindMe.controllers', ['firebase'])
 		$scope.notas = '';
 	}
 >>>>>>> parent of 2d305b2... maps and insert working
+=======
+	// $scope.showAlert = function() {
+ //    $ionicPopup.alert({
+ //        title: 'Find Me',
+ //        template: '¡Se guardó tu nuevo Find!'
+ //    });
+	// }
+>>>>>>> parent of fb4c10d... Login working!!!
 
+}])
 
 .controller('WelcomeCtrl', function($scope, $ionicModal, $state){
 	$scope.bgs = ["http://lorempixel.com/640/1136", "https://dl.dropboxusercontent.com/u/30873364/envato/ionFB/ion-fb-feed.gif"];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	// $scope.facebookSignIn = function(){
 	// 	console.log("doing facebbok sign in");
@@ -197,11 +261,37 @@ angular.module('FindMe.controllers', ['firebase'])
 	// 			$state.go('app.home');
 	// 		}
 	// 	});
+=======
+	$scope.facebookSignIn = function(){
+		console.log("doing facebbok sign in");
+		var ref = new Firebase("https://findmedb.firebaseio.com/");
+		ref.authWithOAuthPopup("facebook", function(error, authData) {
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Authenticated successfully with payload:", authData)
+				$state.go('app.home');
+
+				console.log("Logged in as:", authData.facebook.displayName);
+				console.log("Profile Pic URL:", authData.facebook.profileImageURL);
+
+				var FBconn = $scope.userName = authData.facebook.displayName;
+			}
+		});
+>>>>>>> parent of fb4c10d... Login working!!!
 		
 	// };
 })
 
+.controller('CreateAccountCtrl', function($scope, $state){
+	$scope.doSignUp = function(){
+		console.log("doing sign up");
+		alert('¡Listo! Tu cuenta ha sido creada');
+		$state.go('app.home');
+	};
+})
 
+<<<<<<< HEAD
 =======
 	$scope.facebookSignIn = function(){
 		console.log("doing facebbok sign in");
@@ -295,10 +385,45 @@ angular.module('FindMe.controllers', ['firebase'])
 	});
 	}
 }])
+=======
+.controller('WelcomeBackCtrl', function($scope, $ionicModal, $state){
+	$scope.doLogIn = function(){
+		console.log("doing log in");
+		$state.go('app.home');
+	};
 
+	$ionicModal.fromTemplateUrl('views/partials/forgot-password.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.forgot_password_modal = modal;
+  });
 
-.controller('WelcomeBackCtrl', ['$scope', '$state', function($scope, $state, $authClientProvider){
+  $scope.showForgotPassword = function() {
+    $scope.forgot_password_modal.show();
+  };
+>>>>>>> parent of fb4c10d... Login working!!!
 
+	$scope.requestNewPassword = function() {
+    console.log("requesting new password");
+		$state.go('app.home');
+  };
+
+  // //Cleanup the modal when we're done with it!
+  // $scope.$on('$destroy', function() {
+  //   $scope.modal.remove();
+  // });
+  // // Execute action on hide modal
+  // $scope.$on('modal.hidden', function() {
+  //   // Execute action
+  // });
+  // // Execute action on remove modal
+  // $scope.$on('modal.removed', function() {
+  //   // Execute action
+  // });
+})
+
+<<<<<<< HEAD
 	//Model
 	$scope.model = { name: 'model' };	
 
@@ -338,3 +463,6 @@ angular.module('FindMe.controllers', ['firebase'])
 	});
 	}
 }]);
+=======
+;
+>>>>>>> parent of fb4c10d... Login working!!!

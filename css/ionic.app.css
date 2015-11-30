@@ -80,6 +80,7 @@ map {
   overflow-y: scroll;
 }
 
+<<<<<<< HEAD
 .btnEntrar{
   border-radius: 100px;
   padding: 0 70px;
@@ -91,6 +92,8 @@ map {
 >>>>>>> parent of 2d305b2... maps and insert working
 =======
 >>>>>>> parent of 81bd032... Login changes
+=======
+>>>>>>> parent of fb4c10d... Login working!!!
 /* ******************* CUSTOM STYLES ******************* */
 
 .ion-alert:before {
