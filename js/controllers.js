@@ -1,4 +1,4 @@
-angular.module('FindMe.controllers', ['firebase'])
+angular.module('FindMe.controllers', [])
 
 <<<<<<< HEAD
 =======
