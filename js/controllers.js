@@ -5,8 +5,10 @@ angular.module('FindMe.controllers', ['firebase'])
 
 .controller('HomeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray, $ionicActionSheet, $ionicSideMenuDelegate, $state, $ionicHistory){
 
+
 	//Model
-	$scope.model = { name: 'model' };		
+	$scope.model = { name: 'model' };	
+
 
 	//Define Firebase collection
 	var ref = new Firebase('https://fmtrmp1.firebaseio.com/users/finds');
@@ -15,11 +17,16 @@ angular.module('FindMe.controllers', ['firebase'])
 	//Back 
   	$scope.myGoBack = function() {
     $ionicHistory.goBack();
- 
+ 	
 	}
-  
 
-	//Menu Toggle
+	  //Remove Rental
+	$scope.remove = function(){
+		
+		//GET DB Instance
+		var ref = new Firebase('https://fmtrmp1.firebaseio.com/users/finds/');
+		ref.remove();
+	}
 }])
 
 

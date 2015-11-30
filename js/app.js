@@ -75,6 +75,13 @@ angular.module('FindMe', [
     }
   })
 
+  .state('about', {
+    url: "/about",
+    templateUrl: "views/app/about.html",
+    controller: 'HomeCtrl'
+
+  })
+
   .state('find-detail', {
     url: "/find-detail/{id}",
     templateUrl: "views/app/find-detail.html",
