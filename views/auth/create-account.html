@@ -24,9 +24,12 @@
               <input type="password" placeholder="Contraseña" required name="password" id="register-password" ng-model="model.password" show-hide-input>
             </label>
 
-            <button type="submit" class="button button-balanced" style="border-radius: 100px; padding: 0 70px; margin-top:25px;" ng-click="doSignUp()" ng-disabled="signup_form.$invalid">
+            <!-- <button type="submit" class="button button-balanced" style="border-radius: 100px; padding: 0 70px; margin-top:25px;" ng-click="doSignUp()" ng-disabled="signup_form.$invalid">
               Crear cuenta
-            </button>
+            </button> -->
+            <a href="#/../app/home" class="button button-balanced" style="border-radius: 100px; padding: 0 70px; margin-top:25px;" ng-disabled="signup_form.$invalid">
+              Crear cuenta
+            </a>
             <p ng-show="error" class="message error">{{error}}</p>
           </div>
         </form>

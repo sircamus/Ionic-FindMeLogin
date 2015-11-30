@@ -29,9 +29,12 @@
             <label class="item item-input" show-hide-container>
               <input type="password" placeholder="Contraseña" required name="password" id="login-password" ng-model="model.password" show-hide-input>
             </label>
-            <button type="submit" class="button button-positive" style="border-radius: 100px; padding: 0 70px; margin-top:25px;" ng-click="doLogIn()" ng-disabled="login_form.$invalid">
+            <!-- <button type="submit" class="button button-positive" style="border-radius: 100px; padding: 0 70px; margin-top:25px;" ng-click="doLogIn()" ng-disabled="login_form.$invalid">
               Entrar
-            </button>
+            </button> -->
+            <a href="#/../app/home" class="button button-positive" style="border-radius: 100px; padding: 0 70px; margin-top:25px;" ng-disabled="login_form.$invalid">
+              Entrar
+            </a>
             <p ng-show="error" class="message error">{{error}}</p>
           </div>
         </form>
