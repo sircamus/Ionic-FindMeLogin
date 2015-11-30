@@ -12,7 +12,8 @@ angular.module('FindMe', [
   'FindMe.directives',
   'FindMe.controllers',
   'FindMe.views',
-  'underscore'
+  'underscore',
+  'firebase'
 ])
 
 .run(function($ionicPlatform) {
@@ -28,10 +29,13 @@ angular.module('FindMe', [
   });
 })
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 2d305b2... maps and insert working
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $ionicConfigProvider.tabs.position('bottom');
-
   $stateProvider
   .state('facebook-sign-in', {
     url: "/facebook-sign-in",
@@ -61,7 +65,7 @@ angular.module('FindMe', [
     url: "/app",
     abstract: true,
     templateUrl: "views/app/side-menu.html",
-    controller: 'SideCtrl'
+    controller: 'HomeCtrl'
   })
 
   // APP HOME
@@ -83,10 +87,9 @@ angular.module('FindMe', [
   })
 
   .state('find-detail', {
-    url: "/find-detail/{id}",
+    url: "/find-detail",
     templateUrl: "views/app/find-detail.html",
-    controller: 'DetailsCtrl'
-
+    controller: 'HomeCtrl'
   })
 
   .state('newfind', {
@@ -94,6 +97,10 @@ angular.module('FindMe', [
     templateUrl: "views/app/newfind.html",
     controller: 'AddCtrl'
   })
+<<<<<<< HEAD
+=======
+  
+>>>>>>> parent of 2d305b2... maps and insert working
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/facebook-sign-in');

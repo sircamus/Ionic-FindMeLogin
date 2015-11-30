@@ -3,8 +3,9 @@ angular.module('FindMe.controllers', ['firebase'])
 
 //Controllers
 
-.controller('HomeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray, $ionicActionSheet, $ionicSideMenuDelegate, $state, $ionicHistory){
+.controller('HomeCtrl', function($scope, $ionicActionSheet, $state, $ionicSideMenuDelegate, $ionicHistory){
 
+<<<<<<< HEAD
 
 	//Model
 	$scope.model = { name: 'model' };	
@@ -13,10 +14,13 @@ angular.module('FindMe.controllers', ['firebase'])
 	//Define Firebase collection
 	var ref = new Firebase('https://fmdevice.firebaseio.com/users/finds');
 	$scope.finds = $firebaseArray(ref);
+=======
+>>>>>>> parent of 2d305b2... maps and insert working
 
 	//Back 
   	$scope.myGoBack = function() {
     $ionicHistory.goBack();
+<<<<<<< HEAD
  	
 	}
 
@@ -32,6 +36,16 @@ angular.module('FindMe.controllers', ['firebase'])
 
 
 .controller('SideCtrl', function($scope, $ionicActionSheet,$ionicSideMenuDelegate, $state){
+=======
+ 
+}
+
+	//Menu Toggle
+    $scope.toggleMenu = function(){
+    $ionicSideMenuDelegate.toggleLeft();
+}
+
+>>>>>>> parent of 2d305b2... maps and insert working
 
 
 	$scope.showLogOutMenu = function() {
@@ -66,6 +80,7 @@ angular.module('FindMe.controllers', ['firebase'])
 	};
 })
 
+<<<<<<< HEAD
 
 
 .controller('AddCtrl', ['$scope', '$firebaseArray','$ionicPopup', '$state', function($scope, $firebaseArray, $ionicSideMenuDelegate, $state, $ionicPopup, $location, $authClientProvider){
@@ -73,51 +88,64 @@ angular.module('FindMe.controllers', ['firebase'])
 	
 	//Model
 	$scope.model = { name: 'model' };	
+=======
+.controller('AddCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray, $ionicSideMenuDelegate){
+
+>>>>>>> parent of 2d305b2... maps and insert working
 
 	//Define Firebase collection
 	var ref = new Firebase("https://fmdevice.firebaseio.com/users/finds");
 	$scope.finds = $firebaseArray(ref);
 
+<<<<<<< HEAD
 	$scope.loc = {};
 
 
+=======
+>>>>>>> parent of 2d305b2... maps and insert working
 	$scope.addFind = function(){
-
 		console.log('Adding find');
+<<<<<<< HEAD
 
 		if ($scope.model.nombre) { var nombre = $scope.model.nombre; } else { var nombre = null; }
 		if ($scope.model.notas) { var notas = $scope.model.notas; } else { var notas = ''; }
 		if ($scope.model.choice) { var avatar = $scope.model.choice; } else { var avatar = 'default.png'; }
 		if ($scope.loc.latitude) { var lat = $scope.loc.latitude; } else { var lat = '19.390858961426655'; }
 		if ($scope.loc.longitude) { var lgt = $scope.loc.longitude; } else { var lgt = '-99.14361265000002'; }
+=======
+		if ($scope.nombre) { var nombre = $scope.nombre; } else { var nombre = 'NOMBRE NULL'; }
+		if ($scope.notas) { var notas = $scope.notas; } else { var notas = null; }
+		if ($scope.foto) { var foto = $scope.foto; } else { var foto = 'http://img2.wikia.nocookie.net/__cb20130511180903/legendmarielu/images/b/b4/No_image_available.jpg'; }
+		if ($scope.lugar) { var lugar = $scope.lugar; } else { var lugar = null; }
+>>>>>>> parent of 2d305b2... maps and insert working
 
 		$scope.finds.$add({
 			nombre : nombre,
 			notas : notas,
+<<<<<<< HEAD
 			avatar : avatar, 
 			lat : lat,
 			lgt : lgt,
+=======
+			foto : foto, 
+			lugar : lugar, 
+>>>>>>> parent of 2d305b2... maps and insert working
 			fecha : Firebase.ServerValue.TIMESTAMP
-
 		}).then(function(ref){
 			var id = ref.key();
-			$scope.loc = {};
-			// $scope.showAlert();
 			console.log('Find added with name: '+nombre);
 			console.log('Find added with ID: '+id);
-		}, function(error) {
-			console.log("Error:", error);
-		})
+		});
 
-		alert('¡Se guardó tu nuevo Find!');
 		clearFields();
 
 		$state.go('app.home');
 		
-	
+		
 	}
 
 	function clearFields(){
+<<<<<<< HEAD
 		console.log('Clearing fields...');
 		$scope.model.nombre = '';
 		$scope.model.notas = '';
@@ -125,6 +153,13 @@ angular.module('FindMe.controllers', ['firebase'])
 	}
 }])
 
+=======
+		console.log('Clearing all fields...');
+
+		$scope.nombre = '';
+		$scope.notas = '';
+	}
+>>>>>>> parent of 2d305b2... maps and insert working
 
 
 .controller('WelcomeCtrl', function($scope, $ionicModal, $state){

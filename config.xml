@@ -8,9 +8,13 @@
       Absinthe Labs
   </author>
   <content src="index.html"/>
+<<<<<<< HEAD
   <preference name="StatusBarOverlaysWebView" value="false"/>
   <preference name="StatusBarBackgroundColor" value="#000000"/>
   <preference name="StatusBarStyle" value="lightcontent" />
+=======
+  <access origin="*"/>
+>>>>>>> parent of 2d305b2... maps and insert working
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
