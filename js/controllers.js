@@ -26,10 +26,14 @@ angular.module('FindMe.controllers', [])
 
 	//Define Firebase collection
 <<<<<<< HEAD
+<<<<<<< HEAD
 	var ref = new Firebase('https://fmdevice.firebaseio.com/users/finds');
 =======
 	var ref = new Firebase('https://findmedb.firebaseio.com/finds');
 >>>>>>> parent of fb4c10d... Login working!!!
+=======
+	var ref = new Firebase('https://fmtrmp1.firebaseio.com/users/finds');
+>>>>>>> parent of 9361fc1... Device ready
 	$scope.finds = $firebaseArray(ref);
 =======
 >>>>>>> parent of 2d305b2... maps and insert working
@@ -46,7 +50,7 @@ angular.module('FindMe.controllers', [])
 	$scope.remove = function(){
 		
 		//GET DB Instance
-		var ref = new Firebase('https://fmdevice.firebaseio.com/users/finds/');
+		var ref = new Firebase('https://fmtrmp1.firebaseio.com/users/finds/');
 		ref.remove();
 	}
 }])
@@ -100,7 +104,7 @@ angular.module('FindMe.controllers', [])
 			destructiveButtonClicked: function(){
 				//Called when the destructive button is clicked.
 				//Return true to close the action sheet, or false to keep it opened.
-				var ref = new Firebase("https://fmdevice.firebaseio.com/");
+				var ref = new Firebase("https://fmtrmp1.firebaseio.com/");
 				ref.unauth();
 				$state.go('facebook-sign-in');
 			}
@@ -128,6 +132,7 @@ angular.module('FindMe.controllers', [])
 >>>>>>> parent of 2d305b2... maps and insert working
 
 	//Define Firebase collection
+<<<<<<< HEAD
 	var ref = new Firebase("https://fmdevice.firebaseio.com/users/finds");
 =======
 	$scope.model = { name: 'model' };		
@@ -135,6 +140,9 @@ angular.module('FindMe.controllers', [])
 	//Define Firebase collection
 	var ref = new Firebase('https://findmedb.firebaseio.com/finds');
 >>>>>>> parent of fb4c10d... Login working!!!
+=======
+	var ref = new Firebase("https://fmtrmp1.firebaseio.com/users/finds");
+>>>>>>> parent of 9361fc1... Device ready
 	$scope.finds = $firebaseArray(ref);
 
 <<<<<<< HEAD
@@ -248,7 +256,7 @@ angular.module('FindMe.controllers', [])
 <<<<<<< HEAD
 	// $scope.facebookSignIn = function(){
 	// 	console.log("doing facebbok sign in");
-	// 	var ref = new Firebase("https://fmdevice.firebaseio.com/");
+	// 	var ref = new Firebase("https://fmtrmp1.firebaseio.com/");
 	// 	ref.authWithOAuthPopup("facebook", function(error, authData) {
 	// 		if (error) {
 	// 			console.log("Login Failed!", error);
@@ -302,7 +310,7 @@ angular.module('FindMe.controllers', [])
 .controller('CreateAccountCtrl', ['$scope', '$state', function($scope, $state, $authClientProvider){
 
 	//Define Firebase collection
-	var ref = new Firebase('https://fmdevice.firebaseio.com/users');
+	var ref = new Firebase('https://fmtrmp1.firebaseio.com/users');
 
 
 <<<<<<< HEAD
@@ -347,7 +355,7 @@ angular.module('FindMe.controllers', [])
 
 	function doLogin(email, password) {
 	var isNewUser = true;
-	var ref = new Firebase('https://fmdevice.firebaseio.com/');
+	var ref = new Firebase('https://fmtrmp1.firebaseio.com/');
 	ref.onAuth(function(authData) {
 	  if (authData && isNewUser) {
 	    // save the user's profile into the database so we can list users,
@@ -428,7 +436,7 @@ angular.module('FindMe.controllers', [])
 	$scope.model = { name: 'model' };	
 
 	$scope.doLogIn = function(email, password) {
-	var ref = new Firebase('https://fmdevice.firebaseio.com/users');
+	var ref = new Firebase('https://fmtrmp1.firebaseio.com/users');
 	var email = $("#login-email").val();
     var password = $("#login-password").val();
 
