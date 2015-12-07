@@ -12,13 +12,12 @@
 		<div class="list">
 			<label class="item item-input item-stacked-label">
 				<span class="input-label">Nombre:</span>
-				<input type="text" placeholder="Mi Find" name="nombre" ng-model="nombre">
+				<input type="text" placeholder="Mi Find" name="nombre" ng-model="model.nombre" required>
 			</label>
 			<label class="item item-input item-stacked-label">
 				<span class="input-label">Notas:</span>
-				<textarea type="text" rows="4"placeholder="Escribe alguna nota" name="notas" ng-model="notas"></textarea>
+				<input type="text" rows="4" placeholder="Escribe alguna nota" name="notas" ng-model="model.notas">
 			</label>
-<<<<<<< HEAD
 
 
 			<!-- <div class="mapWrap"  data-tap-disabled="true">
@@ -34,7 +33,7 @@
 		      	<div class="item item-text-wrap">
 		      	<span>Mueve el marcador hasta tu ubicación</span>
 		      		<div id="map" lat="19.390858961426655" lng="-99.14361265000002" zoom="12" map></div>
-		      		<button class="button icon-left ion-pinpoint" ng-click="centerOnMe()"> Obtener mi ubicación</button>
+<!-- 		      		<button class="button icon-left ion-pinpoint" ng-click="centerOnMe()"> Obtener mi ubicación</button> -->
 		      	</div>
 		      </div>
 
@@ -60,15 +59,9 @@
 
 			</div>
 <!-- 	<button class="button button-block button-stable icon ion-camera" ng-click="getPhoto()">
-=======
-		</div>
-	<button class="button button-block button-stable icon ion-camera" ng-click="getPhoto()">
->>>>>>> parent of 2d305b2... maps and insert working
 		Tomar Foto
 	</button>
-	<img ng-src="{{lastPhoto}}" class="lastphoto">
-
-<!-- GET LOCATION CODE -->
+	<img ng-src="{{lastPhoto}}" class="lastphoto"> -->
 
 	<input type="submit" class="button button-block button-positive" value="Guardar">
 	</form>

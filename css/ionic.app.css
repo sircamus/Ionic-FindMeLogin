@@ -61,7 +61,6 @@
   display: block;
 }
 
-<<<<<<< HEAD
 #map{
     height:250px;
     margin:20px auto;
@@ -72,7 +71,6 @@ map {
     margin:20px auto;
 }
 
-<<<<<<< HEAD
 .icon-top .icon{ display: block;margin: 0 auto;height: 32px;font-size: 32px;}
 
 .list-scroll{
@@ -80,7 +78,6 @@ map {
   overflow-y: scroll;
 }
 
-<<<<<<< HEAD
 .btnEntrar{
   border-radius: 100px;
   padding: 0 70px;
@@ -88,12 +85,6 @@ map {
 
 }
 
-=======
->>>>>>> parent of 2d305b2... maps and insert working
-=======
->>>>>>> parent of 81bd032... Login changes
-=======
->>>>>>> parent of fb4c10d... Login working!!!
 /* ******************* CUSTOM STYLES ******************* */
 
 .ion-alert:before {

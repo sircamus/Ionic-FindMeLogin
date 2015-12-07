@@ -2,7 +2,7 @@
 
 <ion-nav-bar class="bar-positive">
 <ion-nav-buttons side="left">
-    <button ng-click="toggleMenu()" class="button button-icon icon ion-navicon"></button>
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
 </ion-nav-bar>
              
@@ -10,49 +10,15 @@
 
 
   <ion-nav-title>
-    <span>Find Me</span>
+    <span>Mis Finds</span>
   </ion-nav-title>
 
 
   <ion-content class="padding">
-  <div class="list card">
-    <div class="item item-icon-right">
-      <h2>Cafetería "Best Coffee"</h2>
-      <p>Calle Tamaulipas 222, Col. Condesa México DF</p>
-      <a ui-sref="find-detail" nav-direction="forward" class="icon ion-ios-arrow-right anchor positive"></a>
-    </div>
 
-    <div class="item item-image padding">
-      <img src="img/cafe.jpg">
-    </div>
-
-    <div class="item tabs tabs-secondary tabs-icon-top">
-      <a class="tab-item" href="#">
-        <i class="icon ion-ios-navigate-outline  dark"></i>
-        <span class="dark">Ver en mapa</span>
-      </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-ios-settings dark"></i>
-        <span class="dark">Modificar</span>
-      </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-ios-close-outline dark"></i>
-        <span class="dark">Eliminar</span>
-      </a>
-    </div>    
-  </div>
-
-  <div class="list card">
-    <div class="item item-icon-right">
-      <h2>Llaves</h2>
-      <p>Plaza Vicente Guerrero 300, Tlalmanalco, México</p>
-      <a ui-sref="find-detail" nav-direction="forward" class="icon ion-ios-arrow-right anchor positive"></a>
-    </div>
-
-<<<<<<< HEAD
   <div ng-repeat="find in finds">
     <div class="list card">
-      <div class="item item-avatar item-icon-right ">
+      <div class="item item-avatar">
       <img src="img/{{find.avatar}}">
       <!-- <i class="icon ion-ios-heart assertive"></i> -->
         <h2><strong>{{find.nombre}}</strong></h2>
@@ -69,26 +35,7 @@
         <h2>Notas:</h2>
         <p>{{find.notas}}</p>
       </div>   
-=======
-    <div class="item item-image padding">
-      <img src="img/keys.png">
->>>>>>> parent of 2d305b2... maps and insert working
     </div>
-
-    <div class="item tabs tabs-secondary tabs-icon-top ">
-      <a class="tab-item" href="#">
-        <i class="icon ion-ios-navigate-outline dark"></i>
-        <span class="dark">Ver en mapa</span>
-      </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-ios-settings dark"></i>
-        <span class="dark">Modificar</span>
-      </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-ios-close-outline dark"></i>
-        <span class="dark">Eliminar</span>
-      </a>
-    </div>    
   </div>
     <a ng-click="remove()" class="button button-block assertive icon ion-ios-close-outline"> LIMPIAR LISTA </a>
 
